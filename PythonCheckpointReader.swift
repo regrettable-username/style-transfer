@@ -27,7 +27,6 @@ public class PythonCheckpointReader {
     func readTensor(layerName: String, weightName: String) -> Tensor<Float>? {
         let countSuffix = layerCounts[layerName] == nil ? "" : "_\(layerCounts[layerName]!)"
         let tensorName = layerName + countSuffix + "/" + weightName
-        print("Name: \(tensorName)")
         // TODO(jekbradbury): support variadic dtype attrs in RawOpsGenerated
         return Tensor<Float>(handle: #tfop(
             "RestoreV2",
